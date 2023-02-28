@@ -12,6 +12,11 @@
     ></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+      @import url("BebasNeue-Regular.ttf");
+      @font-face {
+        font-family: 'madec';
+        src: url("madec.TTF"); /* IE9 Compat Modes */
+      }
       body {
         background-color: #111111;
         display: flex;
@@ -158,11 +163,29 @@
         font-family: "Courier New", Courier, monospace;
         align-items: center;
         border-radius: 15px;
+        padding: 5px;
         color: white;
       }
-      header h1 {
+      header div.logo {
         display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      header div.logo h1 {
+        position: absolute;
+        display: block;
+        z-index: 10;
         text-align: center;
+        font-family: 'madec';
+        font-size: 50px;
+        align-self: baseline;
+        color: #ffffffb8;
+      }
+      header div.logo img {
+        z-index: 5;
+        align-self: baseline;
+        width: 250px;
+        height: 100px;
       }
       header a {
         display: flex;
@@ -180,16 +203,18 @@
         justify-content: space-around;
       }
       .prod {
-        background-color: #36454f;
+        background-color: #1a252c;
         display: flex;
         flex-direction: column;
         padding: 30px;
         border-radius: 15px;
-        margin: 10px;
+        margin: 15px;
+        margin-bottom: 30px;
         align-items: center;
         justify-content: space-around;
         width: 550px;
         height: 300px;
+        color: rgb(231, 231, 231);
       }
       .prod h2 {
         font-family: "Courier New", Courier, monospace;
@@ -204,13 +229,14 @@
         border-radius: 15px;
       }
       .description {
-        font-family: "Helvetica", "Times New Roman", Times, serif;
+        font-family: 'Open Sans', 'Courier New', Courier, monospace;
         font-size: small;
         width: 300px;
         height: 100px;
         overflow: scroll;
         -ms-overflow-style: none;
         scrollbar-width: none;
+        padding: 5px;
       }
       .description::-webkit-scrollbar {
         display: none;
@@ -224,7 +250,7 @@
         height: 100px;
         padding: 20px;
         font-size: 30px;
-        font-family: "Courier New", Courier, monospace;
+        font-family: 'Open Sans', 'Courier New', Courier, monospace;
         align-items: center;
       }
       .container_buttons {
@@ -235,10 +261,16 @@
       .price {
         display: flex;
         align-items: center;
+        padding: 5px;
+        font-family: 'Open Sans', 'Courier New', Courier, monospace;
+      }
+      .price span {
+        margin: 5px;
       }
       .left {
         display: flex;
         flex-direction: column;
+        margin-right: 10px;
       }
       .right {
         display: flex;
@@ -266,20 +298,23 @@
         justify-content: baseline;
       }
       .prod_button {
+        align-self: center;
+        justify-content: center;
         display: flex;
         background: #1b1b1b;
-        width: 100%;
         height: 30px;
         padding: 10px;
         border-radius: 10px;
       }
       .prod_button button {
         text-align: center;
+        display: flex;
         font-family: "Courier New", Courier, monospace;
         font-size: 20px;
         border: none;
         background-color: inherit;
         color: white;
+        align-self: baseline;
       }
 
       dialog.mainDialog::backdrop {
@@ -339,7 +374,8 @@
               <div class="prod_upper">
                 <div class="left">
                   <h2>${el.title}</h2>
-                  <p class="price"><span class="material-symbols-outlined">paid</span> A vista: ${el.price} ou parcelado em até 12X Sem Juros R$</p>
+                  <p class="price"><span class="material-symbols-outlined">paid</span> A vista: ${el.price} <br /> 
+                  Parcelado em até 12X Sem Juros R$</p>
                   <p class="description">${el.description}</p>
                 </div>
                 <div class="right">
@@ -350,7 +386,7 @@
                   />
                 </div>  
               </div>
-              <div class="prod_button"><button onClick=window.addItemtoLocal(${el.id})>Eu Quero!!!</button></div>
+              <div class="prod_button"><button onClick=window.addItemtoLocal(${el.id})>Adicionar ao <span class="material-symbols-outlined">shopping_cart</span></button></div>
             </div>`;
           };
           window.products = await fetchproducts();
@@ -366,6 +402,7 @@
           window.products = primeirametade.concat(segundametade);
         }
         window.addItemtoLocal = (id) => {
+          alert('adicionado')
           function getitem(id) {
             return window.products[id];
           }
@@ -441,7 +478,10 @@
       <div class="items" id="FinalizarCompra"></div>
     </dialog> -->
     <header>
-      <h1>E-Commerce do João</h1>
+      <div class="logo">
+        <img src="logo.png" alt="Dragon Logo">
+        <h1>Tamashiro</h1>
+      </div>
       <div class="icons">
         <a
           ><span class="material-symbols-outlined">shopping_cart</span>Meu
